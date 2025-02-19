@@ -12,44 +12,48 @@
 </head>
 <body>
     <div id="app">
+        <!-- Main Navigation -->
         <div id="nav-container"></div>
+        
+        <!-- Main Content Area -->
         <div id="main-content"></div>
+        
+        <!-- Notification Area -->
         <div id="notification-container"></div>
     </div>
 
-    <!-- Load Components in Specific Order -->
-    <?!= include('Core'); ?>
-    <?!= include('Dashboard'); ?>
-    <?!= include('ProjectManager'); ?>
-    <?!= include('CustomerManager'); ?>
-    <?!= include('EstimateManager'); ?>
-    <?!= include('TimeTracker'); ?>
-    <?!= include('VendorManager'); ?>
-    <?!= include('SubcontractorManager'); ?>
-    <?!= include('SystemSettings'); ?>
-    <?!= include('ActivityLog'); ?>
+    <!-- Core Components - Ordered by Dependency -->
+    <script src="./client/components/Projects.js"></script>
+    <script src="./client/components/Customers.js"></script>
+    <script src="./client/components/Estimates.js"></script>
+    <script src="./client/components/TimeTracker.js"></script>
+    <script src="./client/components/Vendors/VendorDetails.js"></script>
+    <script src="./client/components/SubcontractorManager.js"></script>
 
+    <!-- Application Initialization -->
     <script>
-      window.onload = function() {
-        try {
-          AKCAppManager.init({
-            modules: {
-              dashboard: DashboardManager,
-              projects: ProjectManager,
-              customers: CustomerManager,
-              estimates: EstimateManager,
-              timeTracking: TimeTracker,
-              vendors: VendorManager,
-              subcontractors: SubcontractorManager,
-              settings: SystemSettingsManager,
-              activityLog: ActivityLogManager
-            },
-            initialRoute: 'dashboard'
-          });
-        } catch (error) {
-          console.error('Failed to initialize application:', error);
-        }
-      };
+        window.onload = function() {
+            try {
+                // Initialize with explicit component mapping
+                AKCAppManager.init({
+                    components: {
+                        projects: new ProjectsComponent(),
+                        customers: new CustomersComponent(),
+                        estimates: new EstimatesComponent(),
+                        timeTracking: new TimeTracker(),
+                        vendors: new VendorDetails(),
+                        subcontractors: new SubcontractorManager()
+                    }
+                });
+            } catch (error) {
+                console.error('Application initialization failed:', error);
+                document.getElementById('main-content').innerHTML = `
+                    <div class="p-4 bg-red-100 text-red-700">
+                        Failed to initialize application. Please refresh the page or contact support.
+                    </div>
+                `;
+            }
+        };
     </script>
 </body>
 </html>

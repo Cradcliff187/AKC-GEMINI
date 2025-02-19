@@ -1,3 +1,9 @@
+// This is our primary implementation with:
+// - Project list management
+// - CRUD operations
+// - Status filtering
+// - Search functionality
+
 class ProjectsComponent {
   constructor() {
     this.projects = [];
