@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AKC Construction Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/@heroicons/v2/outline/24/solid" rel="stylesheet">
+  <?!= include('src/client/styles'); ?>
+</head>
+<body class="bg-slate-50">
+  <div class="min-h-screen">
+    <!-- Sidebar -->
+    <div class="fixed inset-y-0 left-0 w-64 bg-blue-900 text-white">
+      <div class="p-4">
+        <h1 class="text-2xl font-bold">AKC Construction</h1>
+      </div>
+      <nav class="mt-8">
+        <div id="nav-items" class="space-y-2 px-4"></div>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64">
+      <!-- Top Navigation Bar -->
+      <div class="bg-white shadow-sm">
+        <div class="flex justify-between items-center px-8 py-4">
+          <div class="flex items-center">
+            <h2 id="page-title" class="text-xl font-semibold text-gray-800"></h2>
+          </div>
+          <div class="flex items-center space-x-4">
+            <button id="notifications" class="p-2 rounded-full hover:bg-gray-100">
+              <span class="sr-only">Notifications</span>
+              <!-- Bell Icon -->
+            </button>
+            <div id="user-menu" class="relative">
+              <!-- User Profile Dropdown -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <main class="p-8">
+        <div id="content" class="bg-white rounded-lg shadow-sm p-6">
+          <!-- Dynamic Content loaded here -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <?!= include('src/client/components/app'); ?>
+  <?!= include('src/client/router'); ?>
+  <?!= include('src/client/components/notifications'); ?>
+</body>
+</html>

@@ -1,0 +1,50 @@
+.activity-log {
+  .timeline-item {
+    @apply relative pb-8;
+
+    &:last-child {
+      @apply pb-0;
+    }
+
+    &::before {
+      content: '';
+      @apply absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200;
+    }
+
+    &:last-child::before {
+      @apply hidden;
+    }
+  }
+
+  .activity-icon {
+    @apply h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white;
+
+    &.create { @apply bg-green-100 text-green-600; }
+    &.update { @apply bg-blue-100 text-blue-600; }
+    &.delete { @apply bg-red-100 text-red-600; }
+    &.status { @apply bg-yellow-100 text-yellow-600; }
+    &.upload { @apply bg-purple-100 text-purple-600; }
+    &.login { @apply bg-indigo-100 text-indigo-600; }
+    &.logout { @apply bg-gray-100 text-gray-600; }
+  }
+
+  .activity-details {
+    @apply mt-2 text-sm text-gray-700;
+    
+    &.expanded {
+      @apply bg-gray-50 p-3 rounded-md;
+    }
+  }
+
+  .activity-timestamp {
+    @apply text-right text-sm whitespace-nowrap text-gray-500;
+  }
+
+  .activity-filter {
+    @apply flex space-x-4 mb-6;
+    
+    select, input {
+      @apply input-field min-w-[150px];
+    }
+  }
+}
