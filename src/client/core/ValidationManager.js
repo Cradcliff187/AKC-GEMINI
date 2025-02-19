@@ -1,5 +1,5 @@
 class ValidationManager {
-  statict  rules = {
+  static rules = {
     required: (value) => ({
       valid: !!value && value.toString().trim() !== '',
       message: 'This field is required'
