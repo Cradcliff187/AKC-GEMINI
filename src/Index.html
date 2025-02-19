@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKC Project Management</title>
+    
+    <!-- External Resources -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div id="nav-container"></div>
+        <div id="main-content"></div>
+        <div id="notification-container"></div>
+    </div>
+
+    <!-- Load Components in Specific Order -->
+    <?!= include('Core'); ?>
+    <?!= include('Dashboard'); ?>
+    <?!= include('ProjectManager'); ?>
+    <?!= include('CustomerManager'); ?>
+    <?!= include('EstimateManager'); ?>
+    <?!= include('TimeTracker'); ?>
+    <?!= include('VendorManager'); ?>
+    <?!= include('SubcontractorManager'); ?>
+    <?!= include('SystemSettings'); ?>
+    <?!= include('ActivityLog'); ?>
+
+    <script>
+      window.onload = function() {
+        try {
+          AKCAppManager.init({
+            modules: {
+              dashboard: DashboardManager,
+              projects: ProjectManager,
+              customers: CustomerManager,
+              estimates: EstimateManager,
+              timeTracking: TimeTracker,
+              vendors: VendorManager,
+              subcontractors: SubcontractorManager,
+              settings: SystemSettingsManager,
+              activityLog: ActivityLogManager
+            },
+            initialRoute: 'dashboard'
+          });
+        } catch (error) {
+          console.error('Failed to initialize application:', error);
+        }
+      };
+    </script>
+</body>
+</html>

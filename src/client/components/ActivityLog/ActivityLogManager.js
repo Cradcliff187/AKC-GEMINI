@@ -1,4 +1,12 @@
-class ActivityLogManager {
+module.exports = {
+  presets: [
+    ['@babel/preset-env', {
+      targets: {
+        node: 'current'
+      }
+    }]
+  ]
+};class ActivityLogManager {
   static actions = {
     CREATE: 'CREATE',
     UPDATE: 'UPDATE',
